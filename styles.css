@@ -50,14 +50,28 @@ body {
     border-radius: 8px;
     border: none;
     font-size: 28px;
+    box-shadow: #916173 4px 4px;
+    border: #916173 2px solid;
 }
 
 .button-container{
     display: flex;
-    gap: 5px;
+    gap: 10px;
 }
 
+.btn:hover{
+    transition: all 0.1s ease-in-out;
+    background-color: #a0a0a0;
+}
 
+.btn:active{
+    transition: all 0.05s ease-in-out;
+    transform: scale(0.95);
+    box-shadow: none;
+    background-color: #000000;
+    border: #ffffff 2px solid;
+    color: #ffffff
+}
 
 
 .btn.zero{
