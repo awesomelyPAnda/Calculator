@@ -22,6 +22,12 @@
    let firstvaluestored = false
    let secondvaluestored = false
    let op
+   let lastDigit
+
+   function getLastDigitAtChar(){
+    let strValue = String(parseFloat(maindisplay.textContent));
+    return strValue.charAt(strValue.length - 1);
+}
 
 
    function storevalue(value, add){
@@ -94,4 +100,18 @@ secondvaluestored = false
     op = ""
     maindisplay.textContent = ""
     secondarydisplay.textContent = ""
+})
+
+backspace.addEventListener("click", () => {
+    lastDigit = getLastDigitAtChar();
+    if(!firstvaluestored){
+       firstvalue = firstvalue.slice(0, -1);
+    }
+    else{
+        secondvalue = secondvalue.slice(0, -1)
+    }
+
+    console.log(lastDigit)
+    maindisplay.textContent = maindisplay.textContent.slice(0, -1);
+
 })
