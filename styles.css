@@ -29,6 +29,19 @@ body {
     height: 50px;
     width: 96%;
     margin-bottom: 20px;
+    margin-bottom: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 10px;
+    overflow: hidden;
+    max-width: 96%;
+}
+
+.text.bottom{
+    font-size: 28px;
+    margin: 0;
+    outline: 1px solid blue;
 }
 
 .display.bottom{

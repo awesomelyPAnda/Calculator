@@ -12,26 +12,26 @@
    const number = document.querySelectorAll(".btn.number")
    const operator = document.querySelectorAll(".btn.operator")
    const maindisplay = document.querySelector("#bottom-text")
+   const equals = document.querySelector(".btn.equals")
+   const secondarydisplay = document.querySelector("#top-text")
    
 
    let firstvalue = ""
    let secondvalue = ""
-   let secondvalue
    let symbol
    let firstvaluestored = false
    let secondvaluestored = false
-   let operator
    let op
-   let final
 
 
    function storevalue(value, add){
     let final = value + add
-    firstvalue += add
+    value += add
     return final
   } 
 
   function performOperation (){
+    let final
     switch (op){
         case "+":
             final = parseFloat(firstvalue) + parseFloat(secondvalue)
@@ -45,28 +45,53 @@
         case "*":
             final = parseFloat(firstvalue) * parseFloat(secondvalue)
             break
-        
+        }
+    return final
     }
-  }
    
-   number.forEach((button) =>{
+   number.forEach((button) => {
     button.addEventListener("click", (event) => {
         const val = event.target.getAttribute("data-value")
-        maindisplay.style.fontSize = "48px"
-        if (firstvalue = false) {
-            maindisplay.textContent = storevalue(firstvalue, val)
-        }
-        else{
-            maindisplay.textContent = storevalue(secondvalue, val)
+        if (!firstvaluestored) {
+            firstvalue += val
+            maindisplay.style.fontSize = "48px"
+            maindisplay.textContent = firstvalue
+        } else {
+            secondvalue += val
+            maindisplay.style.fontSize = "48px"
+            maindisplay.textContent = secondvalue
         }
     })
-    })
+})
 
-    operator.forEach((button) => {
-        button.addEventListener("click", (event) => {
-            op = event.target.getAttribute("data-value")
-            if (firstvaluestored = false) {
-                firstvaluestored = true
-            }
-        })
+operator.forEach((button) => {
+    button.addEventListener("click", (event) => {
+        op = event.target.getAttribute("data-value")
+        if (!firstvaluestored) {
+            firstvaluestored = true
+        }
+        maindisplay.style.fontSize = "60px"
+        maindisplay.textContent = op
+        secondarydisplay.style.fontSize = "36px"
+    secondarydisplay.textContent = firstvalue + op
     })
+})
+
+equals.addEventListener("click", () => {
+    console.log(firstvalue)
+    console.log(secondvalue)
+    console.log(op)
+    maindisplay.textContent = performOperation()
+    secondarydisplay.style.fontSize = "36px"
+    secondarydisplay.textContent = firstvalue + op + secondvalue + "=" + performOperation()
+})
+
+AC.addEventListener("click", () => {
+   firstvalue = ""
+   secondvalue = ""
+   firstvaluestored = false
+secondvaluestored = false
+    op = ""
+    maindisplay.textContent = ""
+    secondarydisplay.textContent = ""
+})
