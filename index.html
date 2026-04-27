@@ -10,50 +10,61 @@
     <link href="https://fonts.googleapis.com/css2?family=Neuton:ital,wght@0,200;0,300;0,400;0,700;0,800;1,400&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="calculator">
-        <div class="display top">
+    <main>
+        <div class="calculator">
+            <div class="display top">
 
-        </div>
-        <div class="display bottom">
-
-        </div>
-        <div class="button-container">
-            <div class="column">
-                <div class="square">
-                    <div class="row first">
-                        <button type="button" class="btn misc AC">AC</button>
-                        <button type="button" class="btn misc backspace">&#9003;</button>
-                        <button type="button" class="btn operator divide">&divide;</button>
-                    </div>
-                    <div class="row second">
-                        <button type="button" class="btn number seven">7</button>
-                        <button type="button" class="btn number eight">8</button>
-                        <button type="button" class="btn number nine">9</button>
-                    </div>
-                    <div class="row third">
-                        <button type="button" class="btn number four">4</button>
-                        <button type="button" class="btn number five">5</button>
-                        <button type="button" class="btn number six">6</button>
-                    </div>
-                    <div class="row fourth">
-                        <button type="button" class="btn number one">1</button>
-                        <button type="button" class="btn number two">2</button>
-                        <button type="button" class="btn number three">3</button>
-                    </div>
-                    <div class="row bottom">
-                        <button type="button" class="btn number zero">0</button>
-                        <button type="button" class="btn number decimal">.</button>
+            </div>
+            <div class="display bottom">
+                <p id="bottom-text"></p>
+            </div>
+            <div class="button-container">
+                <div class="column">
+                    <div class="square">
+                        <div class="row first">
+                            <button type="button" class="btn misc AC">AC</button>
+                            <button type="button" class="btn misc backspace">&#9003;</button>
+                            <button type="button" class="btn operator divide" data-value="/">&divide;</button>
+                        </div>
+                        <div class="row second">
+                            <button type="button" class="btn number seven" data-value="7">7</button>
+                            <button type="button" class="btn number eight" data-value="8">8</button>
+                            <button type="button" class="btn number nine" data-value="9">9</button>
+                        </div>
+                        <div class="row third">
+                            <button type="button" class="btn number four" data-value="4">4</button>
+                            <button type="button" class="btn number five" data-value="5">5</button>
+                            <button type="button" class="btn number six" data-value="6">6</button>
+                        </div>
+                        <div class="row fourth">
+                            <button type="button" class="btn number one" data-value="1">1</button>
+                            <button type="button" class="btn number two" data-value="2">2</button>
+                            <button type="button" class="btn number three" data-value="3">3</button>
+                        </div>
+                        <div class="row bottom">
+                            <button type="button" class="btn number zero" data-value="0">0</button>
+                            <button type="button" class="btn decimal" data-value=".">.</button>
+                        </div>
                     </div>
                 </div>
-            </div>
             
-            <div class="right">
-                <button class="btn operator multiply">&times;</button>
-                <button class="btn operator subtract">-</button>
-                <button class="btn operator add">+</button>
-                <button class="btn equals">=</button>
+                <div class="right">
+                    <button class="btn operator multiply" data-value="*">&times;</button>
+                    <button class="btn operator subtract" data-value="-">-</button>
+                    <button class="btn operator add" data-value="+">+</button>
+                    <button class="btn equals">=</button>
+                </div>
             </div>
         </div>
-    </div>
+    </main>
+    <footer>
+        <div class="footer">
+            <p class="text copyright">Copyright © awesomelyPAnda</p>
+            <a href="https://github.com/awesomelyPAnda"><img src="assets/fa.svg" id="favicon"></a>
+        </div>
+    </footer>
 </body>
+<script src="scripts/buttons.js" defer></script>
+<script src="scripts/logic.js" defer></script>
 </html>
+

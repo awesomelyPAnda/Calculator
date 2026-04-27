@@ -8,12 +8,13 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 12vh;
-    margin-left: 40vw;
+    margin-top: 2vh;
+    margin-left: 38vw;
     background-color: #435861;
     width:fit-content;
     padding: 2%;
     border-radius: 10px;
+    max-width: 320px;
 }
 
 .display{
@@ -21,6 +22,7 @@ body {
     border-radius: 8px;
     box-shadow: #65434f 4px 4px inset;
     border: #65434f 2px solid;
+    max-width: 96%;
 }
 
 .display.top{
@@ -33,6 +35,18 @@ body {
     height: 70px;
     width: 96%;
     margin-bottom: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 10px;
+    overflow: hidden;
+    max-width: 96%;
+}
+
+.text.bottom{
+    font-size: 48px;
+    margin: 0;
+    outline: 1px solid blue;
 }
 
 .square, .right{
@@ -68,7 +82,7 @@ body {
 
 .btn:active{
     transition: all 0.05s ease-in-out;
-    transform: scale(0.95);
+    transform: scale(0.9);
     box-shadow: none;
     background-color: #000000;
     border: #ffffff 2px solid;
@@ -92,7 +106,7 @@ body {
 }
 .btn.equals:active{
     transition: all 0.05s ease-in-out;
-    transform: scale(0.95);
+    transform: scale(0.9);
     box-shadow: none;
     background-color: #000000;
     border: #ffffff 2px solid;
@@ -102,8 +116,8 @@ body {
 
 .btn.operator{
     background-color: #26B2C2;
-    box-shadow: #2093a0 4px 4px;
-    border: #2093a0 2px solid;
+    box-shadow: #2195a2 4px 4px;
+    border: #2195a2 2px solid;
 }
 
 .btn.operator:hover{
@@ -113,12 +127,33 @@ body {
 
 .btn.operator:active{
     transition: all 0.05s ease-in-out;
-    transform: scale(0.95);
+    transform: scale(0.9);
     box-shadow: none;
     background-color: #000000;
     border: #ffffff 2px solid;
     color: #ffffff;
 }
+
+.footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+    margin-top: 20px;
+
+}
+
+#favicon{
+    width:90px;
+    height:90px;
+}
+
+#favicon:hover{
+    transition: all 0.2s ease-in-out;
+    transform: scale(0.9);
+}
+
+
 
 
 
