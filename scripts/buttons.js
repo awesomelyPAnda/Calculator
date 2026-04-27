@@ -23,6 +23,122 @@
    let secondvaluestored = false
    let op
    let lastDigit
+   let answer
+
+   function handleKey(key) {
+    // Numbers
+    if (!isNaN(key)) {
+        handleNumber(key)
+    }
+
+    // Operators
+    else if (["+", "-", "*", "/"].includes(key)) {
+        handleOperator(key)
+    }
+
+    // Equals (Enter or =)
+    else if (key === "Enter" || key === "=") {
+        handleEquals()
+    }
+
+    // Backspace
+    else if (key === "Backspace") {
+        handleBackspace()
+    }
+
+    // Clear
+    else if (key.toLowerCase() === "c") {
+        handleClear()
+    }
+
+    // Decimal
+    else if (key === ".") {
+        handleNumber(".")
+    }
+}
+
+   document.addEventListener("keydown", (event) => {
+    handleKey(event.key)
+})
+
+    function handleNumber(val){
+        maindisplay.style.fontSize = "60px"
+        if (!firstvaluestored) {
+            firstvalue += val
+            maindisplay.textContent = firstvalue
+        } else {
+        
+            if (maindisplay.textContent === op) {
+                secondvalue = val
+                } else {
+                secondvalue += val
+            }
+
+        maindisplay.textContent = secondvalue
+    }
+}
+    
+
+
+    function handleEquals() {
+        answer = performOperation()
+        console.log(firstvalue)
+    console.log(secondvalue)
+    console.log(op)
+    maindisplay.textContent = answer
+    secondarydisplay.textContent = firstvalue + op + secondvalue + "=" + answer
+    secondarydisplay.style.fontSize = "36px"
+    if(performOperation().toString().length > 10){
+        maindisplay.style.fontSize = "34px"
+        secondarydisplay.style.fontSize = "16px"
+    }
+    console.log(answer.toString())
+        secondvaluestored = true
+        firstvaluestored = false
+        firstvalue = ""
+}
+
+     function handleOperator(value) {
+        op = value
+        if (!firstvaluestored) {
+            firstvaluestored = true
+        }
+        maindisplay.style.fontSize = "60px"
+        maindisplay.textContent = op
+        secondarydisplay.style.fontSize = "36px"
+        secondarydisplay.textContent = firstvalue + op
+        if (secondvaluestored && firstvaluestored){
+            secondvaluestored = false
+            firstvalue = answer
+            secondvalue = ""
+            secondarydisplay.style.fontSize = "36px"
+            secondarydisplay.textContent = firstvalue + op
+
+        }
+    }
+
+    function handleClear(){
+        firstvalue = ""
+        secondvalue = ""
+        firstvaluestored = false
+        secondvaluestored = false
+        op = ""
+        maindisplay.textContent = ""
+        secondarydisplay.textContent = ""
+    }
+
+    function handleBackspace(){
+        lastDigit = getLastDigitAtChar();
+    if(!firstvaluestored){
+       firstvalue = firstvalue.slice(0, -1);
+    }
+    else{
+        secondvalue = secondvalue.slice(0, -1)
+    }
+
+    console.log(lastDigit)
+    maindisplay.textContent = maindisplay.textContent.slice(0, -1);
+    }
 
    function getLastDigitAtChar(){
     let strValue = String(parseFloat(maindisplay.textContent));
@@ -57,75 +173,24 @@
    
    number.forEach((button) => {
     button.addEventListener("click", (event) => {
-        const val = event.target.getAttribute("data-value")
-        if (!firstvaluestored) {
-            firstvalue += val
-            maindisplay.style.fontSize = "48px"
-            maindisplay.textContent = firstvalue
-        } else {
-            secondvalue += val
-            maindisplay.style.fontSize = "48px"
-            maindisplay.textContent = secondvalue
-        }
+        handleNumber(event.target.getAttribute("data-value"))
     })
 })
 
 operator.forEach((button) => {
     button.addEventListener("click", (event) => {
-        op = event.target.getAttribute("data-value")
-        if (!firstvaluestored) {
-            firstvaluestored = true
-        }
-        maindisplay.style.fontSize = "60px"
-        maindisplay.textContent = op
-        secondarydisplay.style.fontSize = "36px"
-    secondarydisplay.textContent = firstvalue + op
-        if (secondvaluestored && firstvaluestored){
-            secondvaluestored = false
-            firstvalue = performOperation()
-            secondvalue = ""
-            secondarydisplay.style.fontSize = "36px"
-            secondarydisplay.textContent = firstvalue + op
-
-        }
+        handleOperator(event.target.getAttribute("data-value"))
     })
 })
 
 equals.addEventListener("click", () => {
-    console.log(firstvalue)
-    console.log(secondvalue)
-    console.log(op)
-    maindisplay.textContent = performOperation()
-    secondarydisplay.style.fontSize = "36px"
-    console.log(performOperation().toString())
-    if(performOperation().toString().length > 13){
-        maindisplay.style.fontSize = "36px"
-        secondarydisplay.style.fontSize = "18px"
-    }
-    secondvaluestored = true
-    secondarydisplay.textContent = firstvalue + op + secondvalue + "=" + performOperation()
+    handleEquals()
 })
 
 AC.addEventListener("click", () => {
-   firstvalue = ""
-   secondvalue = ""
-   firstvaluestored = false
-secondvaluestored = false
-    op = ""
-    maindisplay.textContent = ""
-    secondarydisplay.textContent = ""
+    handleClear()
 })
 
 backspace.addEventListener("click", () => {
-    lastDigit = getLastDigitAtChar();
-    if(!firstvaluestored){
-       firstvalue = firstvalue.slice(0, -1);
-    }
-    else{
-        secondvalue = secondvalue.slice(0, -1)
-    }
-
-    console.log(lastDigit)
-    maindisplay.textContent = maindisplay.textContent.slice(0, -1);
-
+    handleBackspace()
 })
