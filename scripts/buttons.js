@@ -37,7 +37,7 @@
   } 
 
   function performOperation (){
-    let final
+   let final
     switch (op){
         case "+":
             final = parseFloat(firstvalue) + parseFloat(secondvalue)
@@ -80,6 +80,14 @@ operator.forEach((button) => {
         maindisplay.textContent = op
         secondarydisplay.style.fontSize = "36px"
     secondarydisplay.textContent = firstvalue + op
+        if (secondvaluestored && firstvaluestored){
+            secondvaluestored = false
+            firstvalue = performOperation()
+            secondvalue = ""
+            secondarydisplay.style.fontSize = "36px"
+            secondarydisplay.textContent = firstvalue + op
+
+        }
     })
 })
 
@@ -89,6 +97,12 @@ equals.addEventListener("click", () => {
     console.log(op)
     maindisplay.textContent = performOperation()
     secondarydisplay.style.fontSize = "36px"
+    console.log(performOperation().toString())
+    if(performOperation().toString().length > 13){
+        maindisplay.style.fontSize = "36px"
+        secondarydisplay.style.fontSize = "18px"
+    }
+    secondvaluestored = true
     secondarydisplay.textContent = firstvalue + op + secondvalue + "=" + performOperation()
 })
 
